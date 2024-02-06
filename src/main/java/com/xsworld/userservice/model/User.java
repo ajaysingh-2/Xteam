@@ -33,9 +33,8 @@ public class User {
             message = "Password must have at least 1 uppercase letter, 1 lowercase letter, 1 special character, 1 number, and be at least 8 characters long")
     private String password;
 
-    @NotNull(message = "Email cannot be null")
-    @Email(message = "Invalid email format")
-    private String email;
+    @NotNull(message = "Username cannot be null")
+    private String username;
 
     private String role;
 
