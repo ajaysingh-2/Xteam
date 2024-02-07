@@ -14,4 +14,15 @@ public class LoggerConstants {
     public static final String CONFIGURING_SECURITY_FILTER_CHAIN = "%s :: Configuring security filter chain... :: %s";
     public static final String CONFIGURING_CORS = "%s :: Configuring CORS... :: %s";
     public static final String SECURITY_FILTER_CHAIN_CONFIGURATION_COMPLETED = "%s :: Security filter chain configuration completed. :: %s";
+
+    public static final String LOADING_USER_BY_USERNAME = "%s :: Loading user by username: {} :: %s";
+    public static final String LOADED_USER = "%s :: User loaded successfully: {} :: %s";
+
+    public static final String FINDING_USER_BY_ID = "%s :: Finding user by ID: {} :: %s";
+    public static final String FINDING_USER_BY_JWT = "%s :: Finding user profile by JWT  :: %s";
+
+    public static final String ATTEMPT_TO_SIGN_UP_WITH_MAIL = "%s :: User attempting to sign up with email: {} :: %s";
+    public static final String SIGN_UP_SUCCESSFUL = "%s :: User attempting to sign up with email: {} :: %s";
+    public static final String ATTEMPT_TO_LOGIN_WITH_MAIL = "%s :: User attempting to log in with email: {} :: %s";
+    public static final String SIGN_IN_SUCCESSFUL = "%s :: Sign-in successful for user: {} :: %s";
 }

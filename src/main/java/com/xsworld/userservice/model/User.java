@@ -1,4 +1,5 @@
 package com.xsworld.userservice.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import jakarta.validation.constraints.Size;
@@ -6,15 +7,61 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User implements UserDetails {
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Assuming you have a 'role' field in your User class
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role));
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // You can implement your own logic here
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        // You can implement your own logic here
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // You can implement your own logic here
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        // You can implement your own logic here
+        return true;
+    }
 
     @Id
     @Column(name = "user_id")
@@ -48,5 +95,9 @@ public class User {
     private String gender;
 
     private LocalDateTime createdAt;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private RefreshToken refreshToken;
 
 }

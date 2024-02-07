@@ -43,7 +43,7 @@ public class JwtHelper {
         return claimsResolver.apply(claims);
     }
 
-    //for retrieveing any information from token we will need the secret key
+    //for retrieving any information from token we will need the secret key
     private Claims getAllClaimsFromToken(String token) {
         return Jwts.parser().setSigningKey(Constants.SECRET_KEY).parseClaimsJws(token).getBody();
     }
@@ -121,6 +121,5 @@ public class JwtHelper {
         log.info(String.format(AUTHORITIES_POPULATED,POPULATE_AUTHORITIES,auths));
         return String.join(",",auths);
     }
-
 }
 
