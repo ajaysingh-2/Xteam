@@ -25,4 +25,7 @@ public class LoggerConstants {
     public static final String SIGN_UP_SUCCESSFUL = "%s :: User attempting to sign up with email: {} :: %s";
     public static final String ATTEMPT_TO_LOGIN_WITH_MAIL = "%s :: User attempting to log in with email: {} :: %s";
     public static final String SIGN_IN_SUCCESSFUL = "%s :: Sign-in successful for user: {} :: %s";
+
+    public static final String RECEIVED_GET_REQUEST_TO_FIND_USER_BY_ID = "%s :: Received a GET request to find user by ID: {} :: %s";
+    public static final String RECEIVED_GET_REQUEST_TO_FIND_USER_USING_JWT = "%s :: Received a GET request to find user profile using JWT :: %s";
 }

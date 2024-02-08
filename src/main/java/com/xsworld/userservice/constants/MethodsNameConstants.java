@@ -16,4 +16,7 @@ public class MethodsNameConstants {
 
     public static final String CREATE_USER_HANDLER = "createUserHandler";
     public static final String LOGIN_USER_HANDLER = "loginUserHandler";
+
+    public static final String FIND_USER_BY_ID_HANDLER = "findUserByIdHandler";
+    public static final String FIND_USER_PROFILE_HANDLER = "findUserProfileHandler";
 }

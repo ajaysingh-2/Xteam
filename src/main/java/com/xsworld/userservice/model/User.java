@@ -25,7 +25,6 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // Assuming you have a 'role' field in your User class
         return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role));
     }
 
@@ -41,25 +40,22 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        // You can implement your own logic here
         return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        // You can implement your own logic here
         return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        // You can implement your own logic here
         return true;
     }
 
-    @Override
+
+    @JsonIgnore
     public boolean isEnabled() {
-        // You can implement your own logic here
         return true;
     }
 

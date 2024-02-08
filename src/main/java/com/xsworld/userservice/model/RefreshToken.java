@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
 @Data

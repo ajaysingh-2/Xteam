@@ -5,6 +5,7 @@ import com.xsworld.userservice.helper.JwtHelper;
 import com.xsworld.userservice.model.RefreshToken;
 import com.xsworld.userservice.model.User;
 import com.xsworld.userservice.repository.UserRepository;
+import com.xsworld.userservice.response.UserResponse;
 import com.xsworld.userservice.service.RefreshTokenService;
 import com.xsworld.userservice.service.UserService;
 import jakarta.transaction.Transactional;
@@ -37,8 +38,6 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
 
-
-
     @Override
     public User findByUserId(String userId) throws UserException {
         log.info(String.format(FINDING_USER_BY_ID,FIND_BY_USER_ID,userId));
@@ -50,14 +49,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserProfileByJwt(String jwt) throws UserException {
-        log.info(String.format(FINDING_USER_BY_JWT,FIND_USER_PROFILE_BY_JWT,""));
+    public UserResponse findUserProfileByJwt(String jwt) throws UserException {
+        log.info(String.format(FINDING_USER_BY_JWT, FIND_USER_PROFILE_BY_JWT, ""));
         String email = jwtHelper.getEmailFromJwtToken(jwt);
         Optional<User> user = userRepository.findByUsername(email);
-        if(user.isPresent()) {
-            return user.get();
+        if (user.isPresent()) {
+            return mapUserToUserResponse(user.get());
         }
-        throw new UserException(String.format(USERNAME_NOT_FOUND_WITH_MAIL,FIND_USER_PROFILE_BY_JWT,email));
+        throw new UserException(String.format(USERNAME_NOT_FOUND_WITH_MAIL, FIND_USER_PROFILE_BY_JWT, email));
+    }
+
+    private UserResponse mapUserToUserResponse(User user) {
+        return UserResponse.builder()
+                .userId(user.getUserId())
+                .userName(user.getUsername())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .phone(user.getMobile())
+                .dateOfBirth(user.getDateOfBirth())
+                .gender(user.getGender())
+                .build();
     }
 
     @Transactional

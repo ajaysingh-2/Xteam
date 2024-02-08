@@ -24,8 +24,9 @@ public class JwtHelper {
     //requirement :
 
     private SecretKey key= Keys.hmacShaKeyFor(Constants.SECRET_KEY.getBytes());
-    public static final long JWT_TOKEN_VALIDITY = (5 * 60 * 60);
+    public static final long JWT_TOKEN_VALIDITY =50;
 
+//     (5 * 60 * 60)
     //    public static final long JWT_TOKEN_VALIDITY =  60;
 
     //retrieve username from jwt token
@@ -69,7 +70,6 @@ public class JwtHelper {
 
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
-//                .setExpiration(new Date(System.currentTimeMillis() + 365 * 24 * 60 * 60 * 1000))
                 .signWith(SignatureAlgorithm.HS512, Constants.SECRET_KEY).compact();
     }
 
